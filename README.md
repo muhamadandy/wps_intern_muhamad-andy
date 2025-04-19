@@ -65,11 +65,11 @@ DB_PASSWORD=
 
 ## 🌱 Migrasi & Seeder
 
-Jalankan migrasi database:
+### Jalankan migrasi database
 
 <pre><code>php artisan migrate</code></pre>
 
-(Opsional) Isi database dengan data dummy:
+### Isi database dengan data dummy
 
 <pre><code>php artisan db:seed</code></pre>
 
@@ -77,11 +77,13 @@ Jalankan migrasi database:
 
 ## ▶️ Menjalankan Aplikasi
 
-Jalankan frontend (Vite):
+### Jalankan frontend
 
 <pre><code>npm run dev</code></pre>
 
-Jalankan backend (Laravel):
+
+### Jalankan Laravel:
 
 <pre><code>php artisan serve</code></pre>
+
 ---
