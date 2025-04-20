@@ -21,7 +21,6 @@ class LogController extends Controller
 
         $query = Log::where('user_id', $user->id);
 
-        // Filter berdasarkan status jika tersedia
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
@@ -71,14 +70,11 @@ class LogController extends Controller
             'attachment' => 'nullable|mimes:pdf|max:2048',
         ]);
 
-        // Jika log sebelumnya ditolak, ubah status kembali menjadi pending
         if ($log->status === 'ditolak') {
             $validated['status'] = 'pending';
 
-            // Ambil riwayat revisi, inisialisasi sebagai array jika null
             $currentHistory = $log->revision_history ?? [];
 
-            // Tambahkan revisi baru
             $currentHistory[] = [
                 'last_rejected_at' => $log->updated_at->format('Y-m-d H:i:s'),
                 'previous_feedback' => $log->feedback,
@@ -89,7 +85,6 @@ class LogController extends Controller
             $validated['is_resubmission'] = true;
         }
 
-        // Handle file baru jika diunggah
         if ($request->hasFile('attachment')) {
             if ($log->attachment && Storage::disk('public')->exists($log->attachment)) {
                 Storage::disk('public')->delete($log->attachment);
@@ -205,7 +200,6 @@ class LogController extends Controller
         $log->status = 'disetujui';
         $log->save();
 
-        // Kirim notifikasi ke pemilik log (staff)
         $log->user->notify(new LogStatusNotification($log, 'disetujui'));
 
         return back()->with('success', 'Log disetujui.');
@@ -222,7 +216,6 @@ class LogController extends Controller
             'feedback' => $validated['feedback'],
         ]);
 
-        // Kirim notifikasi ke pemilik log (staff)
         $log->user->notify(new LogStatusNotification($log, 'ditolak'));
 
         return back()->with('success', 'Log ditolak dengan catatan.');

@@ -117,7 +117,6 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       @if ($log->status === "pending")
                         <div x-data="{ showRejectForm: false }" @click.stop>
-                          <!-- Tombol Setujui dan Tolak (ditampilkan ketika form penolakan tidak aktif) -->
                           <div x-show="!showRejectForm" class="flex space-x-2">
                             <form
                               onsubmit="return confirm('Apakah Anda yakin?')"
@@ -144,7 +143,6 @@
                             </button>
                           </div>
 
-                          <!-- Form penolakan (ditampilkan ketika tombol Tolak ditekan) -->
                           <div x-show="showRejectForm" x-transition class="w-full" @click.stop>
                             <form
                               action="{{ route("logs.reject", $log) }}"

@@ -60,10 +60,8 @@
       {{-- Riwayat Penolakan --}}
       @if ($log->is_resubmission && $log->revision_history)
         @php
-          // Memastikan revision_history adalah array
           $revisionHistory = is_array($log->revision_history) ? $log->revision_history : json_decode($log->revision_history, true);
 
-          // Jika format lama (single associative array), konversi ke array item
           if (isset($revisionHistory["previous_feedback"]) && ! isset($revisionHistory[0])) {
             $revisionHistory = [$revisionHistory];
           }
@@ -111,13 +109,11 @@
         </div>
       @endif
 
-      {{-- Tombol Approval untuk Manager --}}
       @php
         $user = Auth::user();
         $level = $user?->position?->level ?? "";
       @endphp
 
-      {{-- Tombol Kembali --}}
       <div class="flex justify-end mt-6">
         @if ($level === "manager")
           <a

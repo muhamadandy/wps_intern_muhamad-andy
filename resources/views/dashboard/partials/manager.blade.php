@@ -1,6 +1,5 @@
 <div>
   <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-    <!-- Dashboard Header -->
     <div class="px-4 py-5 sm:px-6">
       <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
     </div>
@@ -23,28 +22,25 @@
       initialView: 'dayGridMonth',
       locale: 'id',
       height: 'auto',
-      firstDay: 1, // Mulai dari Senin
+      firstDay: 1,
       eventTimeFormat: {
         hour: '2-digit',
         minute: '2-digit',
         meridiem: false,
       },
       events: function (info, successCallback, failureCallback) {
-        // Fetch events from your endpoint
         fetch('{{ route("calendar.logs") }}')
           .then((response) => response.json())
           .then((data) => {
-            // Process the events to add color based on status
             const coloredEvents = data.map((event) => {
-              // Add color property based on status
               if (event.status === 'ditolak' || event.contains_rejected === true) {
-                event.backgroundColor = '#f44336' // Merah untuk yang ditolak
+                event.backgroundColor = '#f44336'
                 event.borderColor = '#f44336'
               } else if (event.status === 'pending' || event.contains_pending === true) {
-                event.backgroundColor = '#ffeb3b' // Kuning untuk yang pending
+                event.backgroundColor = '#ffeb3b'
                 event.borderColor = '#ffeb3b'
               } else {
-                event.backgroundColor = '#4caf50' // Hijau untuk yang disetujui
+                event.backgroundColor = '#4caf50'
                 event.borderColor = '#4caf50'
               }
               return event
@@ -58,9 +54,7 @@
           })
       },
       dateClick: function (info) {
-        // Format the date as YYYY-MM-DD
         var clickedDate = info.dateStr
-        // Redirect to the verification page with the date parameter
         window.location.href = '{{ route("verifikasi-log") }}?date=' + clickedDate
       },
     })
