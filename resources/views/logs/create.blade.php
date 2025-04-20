@@ -25,6 +25,7 @@
         {{-- Bukti (Attachment) --}}
         <div class="mb-4">
           <label for="attachment" class="block text-sm font-medium text-gray-700">Bukti (opsional)</label>
+          <p class="text-xs text-gray-500 mb-2">Hanya file PDF. Maksimal ukuran 2MB.</p>
           <input
             type="file"
             name="attachment"

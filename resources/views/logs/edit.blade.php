@@ -31,6 +31,7 @@
       {{-- Lampiran --}}
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Lampiran Bukti (Opsional)</label>
+        <p class="text-xs text-gray-500 mb-2">Format file harus PDF. Ukuran maksimal 2MB.</p>
         @if ($log->attachment)
           <p class="text-sm text-gray-600 mb-2">
             Lampiran saat ini: {{ $log->original_name }}

@@ -8,7 +8,7 @@
   </head>
   <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="w-full max-w-md bg-white rounded-xl shadow-md p-8">
-      <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">SILOG</h2>
+      <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">LOGDAY</h2>
 
       @if (session("success"))
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
